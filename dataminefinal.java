@@ -191,7 +191,7 @@ class dataminefinal implements AutoCloseable{
         Scanner sc = new Scanner(System.in);
         if(sc.hasNextLine()){
             FilePath=sc.nextLine();
-            try(datamine cart = new datamine(FilePath)){
+            try(dataminefinal cart = new dataminefinal(FilePath)){
                 handler(cart);
             }
             catch(Exception e){
@@ -199,7 +199,7 @@ class dataminefinal implements AutoCloseable{
             }
         }
         else{
-            try(datamine cart= new datamine()){
+            try(dataminefinal cart= new dataminefinal()){
                 handler(cart);
             }
             catch(Exception e){
@@ -208,7 +208,7 @@ class dataminefinal implements AutoCloseable{
         }
         sc.close();
     }
-    public static void handler(datamine cart) {
+    public static void handler(dataminefinal cart) {
      ////////////operations   
     }
     @Override
