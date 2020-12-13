@@ -3,15 +3,15 @@ import json
 import threading,_thread
 from functools import partial
 class datamine:
+    Filepath="D:/demo.json"
     def __init__(self):
         self.data={}
-        self.Filepath="D:/demo.json"
-    def filecreate(self,Filepath="D:/demo.json"):
-        print("enter file path")
-        self.Filepath=input()
+
+    def filepathcreate(self,var):
+        self.Filepath=var
 
     def write(self,data):
-            f=open(self.Filepath,"w")
+            f=open(datamine.Filepath,"w")
             json_object = json.dumps(self.data, indent = 4)
             f.write(json_object)
             print("Changes commited")
@@ -30,8 +30,8 @@ class datamine:
                         if len(key)<=32:
                             self.data[key]=l
                             print("Created")
-                            d=datamine()
-                            d.write(self.data)
+                            self.write(self.data)
+                            print(self.data);
                             print("File modified")
                         else:
                             print("large file")
@@ -46,14 +46,17 @@ class datamine:
                     if time.time()<b[1]:
                         del self.data[key]
                         print("successfully deleted")
-                        d=datamine()
-                        d.write(self.data)
+                        print("data after")
+                        print(self.data)
+                        self.write(self.data)
                         print("File modified")
                     else:
                         print("expired")
                 else:
                     del self.data[key]
-                    print("successfully deleted")        
+                    print("else")
+                    print("successfully deleted")
+                    self.write(self.data)        
     def read(self,key):
             if key not in self.data:
                 print("value not found")
@@ -70,10 +73,11 @@ class datamine:
                     return stri
 d=datamine()
 mylock = threading.Lock()
-d.filecreate()
+var=input()
+d.filepathcreate(var)
 d.create("abc",10)
 d.create("bat",20)
 print(d.read("bat"))
-d.delete("abc")
+d.delete("bat")
 
     
