@@ -1,7 +1,6 @@
 import time
 import json
 import threading,_thread
-from functools import partial
 class datamine:
     Filepath="D:/demo.json"
     def __init__(self):
@@ -96,7 +95,6 @@ class datamine:
                     self.lock.release();
                     return stri
 d=datamine()
-mylock = threading.Lock()
 print("enter path defaults to D:/demo.json")
 var=input()
 d.filepathcreate(var)
@@ -105,5 +103,3 @@ d.create("bat",20)
 print(d.read("abc"))
 print(d.read("bat"))
 d.delete("bat")
-
-    
