@@ -24,6 +24,12 @@ class datamine:
             self.lock.release();
             f.close()
 
+    def readJSON(self):
+            f=open(datamine.Filepath,"r")
+            data=json.load(f)
+            print("reading from JSON file")
+            print(data)
+
     def create(self,key,value,timeout=0):
             if key in self.data:
                 print("error: this key already exists")
@@ -44,6 +50,7 @@ class datamine:
                             print("large file")
                 else:
                     print("invalid key")
+
     def delete(self,key):
             if key not in self.data:
                 print("value not found")
@@ -66,7 +73,8 @@ class datamine:
                     print("data after")
                     print(self.data)
                     self.write(self.data)
-                    print("File modified")        
+                    print("File modified")      
+
     def read(self,key):
             self.lock.acquire()
             if key not in self.data:
@@ -87,12 +95,14 @@ class datamine:
                     print("reading")
                     self.lock.release();
                     return stri
+
 d=datamine()
 print("enter path defaults to D:/demo.json")
 var=input()
 d.filepathcreate(var)
 d.create("abc",10,60)
 d.create("bat",20)
+d.readJSON()
 print(d.read("abc"))
 print(d.read("bat"))
 d.delete("bat")
