@@ -73,6 +73,7 @@ class datamine:
                     return stri
 d=datamine()
 mylock = threading.Lock()
+print("enter the file path defaults to D:/demo.json")
 var=input()
 d.filepathcreate(var)
 d.create("abc",10)
