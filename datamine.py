@@ -1,6 +1,18 @@
 import time
 import json
 data={}
+Filepath="D:/demo.json"
+def filecreate(Filepath="D:/demo.json"):
+    print("enter file path")
+    Filepath=input()
+
+def write(data):
+    f=open(Filepath,"w")
+    json_object = json.dumps(data, indent = 4)
+    f.write(json_object)
+    print("Changes commited")
+    f.close()
+
 def create(key,value,timeout=0):
     if key in data:
         print("error: this key already exists")
@@ -14,6 +26,8 @@ def create(key,value,timeout=0):
                 if len(key)<=32:
                     data[key]=l
                     print("Created")
+                    write(data)
+                    print("File modified")
             else:
                 print("large file")
         else:
@@ -27,6 +41,8 @@ def delete(key):
             if time.time()<b[1]:
                 del data[key]
                 print("successfully deleted")
+                write(data)
+                print("File modified")
             else:
                 print("expired")
         else:
@@ -46,14 +62,11 @@ def read(key):
         else:
             stri=str(key)+":"+str(b[0])
             return stri
-print("enter file path")
-Filepath=input()
-f=open(Filepath,"a")
-create("abc",10)
-create("bat",20)
-print(read("bat"))
-delete("abc")
-json_object = json.dumps(data, indent = 4)
-f.write(json_object)
-f.close()
+
+# filecreate()
+# create("abc",10)
+# create("bat",20)
+# print(read("bat"))
+# delete("abc")
+
     
