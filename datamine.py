@@ -25,7 +25,6 @@ class datamine:
             f.close()
 
     def create(self,key,value,timeout=0):
-            self.lock.acquire()
             if key in self.data:
                 print("error: this key already exists")
             else:
@@ -38,7 +37,6 @@ class datamine:
                         if len(key)<=32:
                             self.data[key]=l
                             print("Created")
-                            self.lock.release();
                             self.write(self.data)
                             print(self.data);
                             print("File modified")
@@ -47,9 +45,7 @@ class datamine:
                 else:
                     print("invalid key")
     def delete(self,key):
-            self.lock.acquire()
             if key not in self.data:
-                self.lock.release();
                 print("value not found")
             else:
                 b=self.data[key]
@@ -59,11 +55,9 @@ class datamine:
                         print("successfully deleted")
                         print("data after")
                         print(self.data)
-                        self.lock.release();
                         self.write(self.data)
                         print("File modified")
                     else:
-                        self.lock.release();
                         print("expired")
                 else:
                     del self.data[key]
@@ -71,7 +65,6 @@ class datamine:
                     print("successfully deleted")
                     print("data after")
                     print(self.data)
-                    self.lock.release();
                     self.write(self.data)
                     print("File modified")        
     def read(self,key):
