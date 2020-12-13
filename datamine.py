@@ -9,7 +9,10 @@ class datamine:
         self.data={}
 
     def filepathcreate(self,var):
-        self.Filepath=var
+        if var=='':
+            datamine.Filepath="D:/demo.json"
+        else:
+            datamine.Filepath=var
 
     def write(self,data):
             self.lock.acquire()
