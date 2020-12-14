@@ -52,12 +52,12 @@ class datamine:
                 print("error: this key already exists")
             else:
                 if(key.isalpha()):
-                    if len(self.data)<(1024*1020*1024) and value<=(16*1024*1024): # data<1GB and JSONobj < 32chars
+                    if len(self.data)<(1024*1020*1024) and value<=(16*1024*1024): # data<1GB and JSONobj < 16kb
                         if timeout==0:
                             l=[value,timeout]
                         else:
                             l=[value,time.time()+timeout]
-                        if len(key)<=32:
+                        if len(key)<=32:                                          # key length<32
                             self.data[key]=l
                             print("Created")
                             self.write(self.data)
